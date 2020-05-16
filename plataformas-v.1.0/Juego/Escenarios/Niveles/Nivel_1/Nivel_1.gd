@@ -24,7 +24,7 @@ func _ready():
 	get_node("/root/Level").add_child(banderaAltura)
 #	Se añade el player
 	personaje = $Player
-	get_node("/root/Level").add_child(personaje)
+#	get_node("/root/Level").add_child(personaje)
 	get_node("/root/Level/Player").set_position(Vector2(get_viewport().size.x/2, 150))
 	
 
