@@ -14,17 +14,19 @@ export var slope_slide_threshold := 50.0
 var velocity := Vector2()
 #var conesion_anima_fin
 #onready var tilemap = get_node("/root/Level/TileMap")
-var left = -0.5
-var right = 0.5
-var direction
+#var left = -0.5
+#var right = 0.5
+#var direction
 
 #Cyclo Pi variables
-var bandera_boton_pulsao = false
+#var bandera_boton_pulsao = false
 onready var gameover = load("res://Menus/GameOver/GameOver.tscn").instance()
 var bandera_muerto = false
 var bandera_sonido_pasos = true
-
-
+var tilemap
+func _ready():
+	tilemap = get_parent().get_node("tilemap")
+	print(tilemap)
 
 func _physics_process(delta: float) -> void:
 	
@@ -43,16 +45,9 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor() and (Input.is_action_just_released("move_right") or Input.is_action_just_released("move_left")):
 		velocity.y = 0
-	if is_on_wall():
-		print("is on wall", is_on_wall())
-		if direction_x == left:
-			print("hola")
-			direction_x = right
-			if Input.is_action_pressed("ui_up") or bandera_boton_pulsao:
-				salto()
-
-		elif direction_x == right:
-			direction_x = left
+	
+	if not is_on_floor():
+		snap = false
 
 	var just_landed := is_on_floor() and not snap
 	if just_landed:
@@ -84,13 +79,13 @@ func update_animation(velocity: Vector2) -> void:
 		sprite.play(animation)
 
 
-func _on_TextureButton_pressed():
-	bandera_boton_pulsao = false
-	
-func _on_TextureButton_button_down():
-	bandera_boton_pulsao = true
-	if snap :
-		salto()
+#func _on_TextureButton_pressed():
+#	bandera_boton_pulsao = false
+#
+#func _on_TextureButton_button_down():
+#	bandera_boton_pulsao = true
+#	if snap :
+#		salto()
 	
 func salto():
 	snap = false
@@ -127,3 +122,23 @@ func quitar_vida():
 		get_parent().add_child(gameover)
 #		add_child(gameover)
 
+func _input(event):
+	var lado = 32
+	if get_node("AnimatedSprite").flip_h:
+		lado = -32
+	else:
+		lado = 32
+	
+	if event is InputEventMouseButton :
+
+#		var mouse_pos = get_viewport().get_mouse_position()
+		var personaje_pos = Vector2(get_position().x + lado, get_position().y)
+		var tile_pos = tilemap.world_to_map(personaje_pos)
+		if event.button_index == BUTTON_LEFT:
+		
+			tilemap.set_cell(tile_pos.x,tile_pos.y, 1)
+		
+		if event.button_index == BUTTON_RIGHT:
+#	
+			tilemap.set_cell(tile_pos.x,tile_pos.y, -1)
+#		
