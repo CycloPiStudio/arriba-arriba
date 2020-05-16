@@ -8,20 +8,18 @@ var playerPosX
 
 
 func _ready():
-#	altura = (get_viewport().size.y)
+
 	pass 
 
 
 func _process(_delta):
 	playerPosX = get_node("/root/Level/Player").get_position().x
+
+	get_node("AnimatedSprite").set_offset(Vector2(0,1980)) # 1980 es la mitad de la img
 	aumentarNivel()
 	get_node(".").set_position(Vector2(playerPosX, nuevaAltura))
-	get_node("Area2D/CollisionShape2D").shape.extents = Vector2((get_viewport().size.x/2)+50,10)
 	cartelAltura()
-#	if get_viewport().size.y - nuevaAltura == 100:
-#		cartelAltura()
-#	if get_viewport().size.y - nuevaAltura == 200:
-#		cartelAltura()
+
 	
 	
 	pass
@@ -41,15 +39,5 @@ func aumentarNivel():
 #	print ("nueva altura: " + str(nuevaAltura))
 #	print (get_node("/root/Principal/Player").get_position().y)
 
-
-func _on_Area2D_body_entered(body):
-	print ("entra el " + str(body.name))
-	if body.get_name() == "Player":
-		pass
-	pass # Replace with function body.
-
-func _on_Area2D_body_exited(body):
-	print ("sale el " + str(body.name))
-	pass # Replace with function body.
 
 
