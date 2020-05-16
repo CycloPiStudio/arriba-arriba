@@ -5,7 +5,8 @@ onready var nuevaAltura
 export var velocidadSubida = 50
 
 var playerPosX
-
+var playerPosY
+var player
 
 func _ready():
 
@@ -13,23 +14,35 @@ func _ready():
 
 
 func _process(_delta):
-	playerPosX = get_node("/root/Level/Player").get_position().x
-
-	get_node("AnimatedSprite").set_offset(Vector2(0,1980)) # 1980 es la mitad de la img
-	aumentarNivel()
-	get_node(".").set_position(Vector2(playerPosX, nuevaAltura))
+	aumentarAltura()
+	posicionEnemigo()
 	cartelAltura()
-
-	
+#	quitarVida()
 	
 	pass
-func cartelAltura():
-	get_node("Line2D").set_point_position(0, Vector2(-get_viewport().size.x, 0))
-	get_node("Line2D").set_point_position(1, Vector2(get_viewport().size.x, 0))
-	get_node("Line2D/Label").set_text(str(get_viewport().size.y - nuevaAltura))
-
-func aumentarNivel():
 	
+
+func posicionEnemigo():
+	playerPosX = get_parent().get_node("Player").get_position().x
+	playerPosY = get_parent().get_node("Player").get_position().y
+	get_node(".").set_position(Vector2(playerPosX, nuevaAltura))
+	get_node("AnimatedSprite").set_offset(Vector2(0,1980))
+
+
+func quitarVida():
+	player = get_parent().get_node("Player")
+	
+	if playerPosY > nuevaAltura:
+#		get_node("Timer").start()	
+#		if 
+		player.quitarVida()
+		print ("muere" +str(nuevaAltura))
+#		print ("altura player: " + str(playerPosY))
+#		print ("altura enemigo: " + str(nuevaAltura ))
+		pass
+
+
+func aumentarAltura():
 	var tiempo = int(OS.get_ticks_msec())/velocidadSubida
 	nuevaAltura = altura - tiempo
 	
@@ -37,7 +50,15 @@ func aumentarNivel():
 #	print("tiempo: " + str(tiempo))
 #	print ("altura: " + str(altura))
 #	print ("nueva altura: " + str(nuevaAltura))
-#	print (get_node("/root/Principal/Player").get_position().y)
 
+	cartelAltura()
+
+	
+	
+
+func cartelAltura():
+	get_node("Line2D").set_point_position(0, Vector2(-get_viewport().size.x, 0))
+	get_node("Line2D").set_point_position(1, Vector2(get_viewport().size.x, 0))
+	get_node("Line2D/Label").set_text(str(get_viewport().size.y - nuevaAltura))
 
 
