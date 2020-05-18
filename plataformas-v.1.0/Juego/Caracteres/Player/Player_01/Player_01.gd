@@ -70,10 +70,12 @@ func _input(event):
 	if Input.is_action_just_pressed("ui_accept") or event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		ponerQuitarBloque(1,1,-1)
 		
+var numBolque = 0		
 func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):	
 #	poner = 1 ; quitar = -1	
 #	desplazaBolqueX o Y multiplicador  para ubicar el bloque
 	var tamanoBloque 
+	 
 	if get_node("AnimatedSprite").flip_h:
 		tamanoBloque = -32
 	else:
@@ -81,6 +83,10 @@ func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):
 		
 	var personaje_pos = Vector2(get_position().x + tamanoBloque * desplazaBloqueX, get_position().y + tamanoBloque * deplazaBloqueY)
 	var tile_pos = tilemap.world_to_map(personaje_pos)
-	tilemap.set_cell(tile_pos.x,tile_pos.y, 1)
-
-
+	tilemap.set_cell(tile_pos.x,tile_pos.y, poner)
+	if poner == 1:
+		numBolque += 1
+	elif poner == -1:
+		numBolque -= 1
+	print (numBolque)
+		
