@@ -54,11 +54,7 @@ func update_animation(velocity: Vector2) -> void:
 		sprite.flip_h = velocity.x < 0
 		
 func _input(event):
-	var tamanoBloque 
-	if get_node("AnimatedSprite").flip_h:
-		tamanoBloque = -32
-	else:
-		tamanoBloque = 32
+
 #	Saltar
 	if Input.is_action_just_pressed("ui_up") and snap and not Input.is_action_pressed("ui_down"):
 		velocity.y = -jump_force
@@ -69,14 +65,22 @@ func _input(event):
 		velocity.y = 0
 #	Poner bloques
 	if Input.is_action_just_pressed("ui_select") or event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-#		var mouse_pos = get_viewport().get_mouse_position()
-		var personaje_pos = Vector2(get_position().x + tamanoBloque, get_position().y + 2*tamanoBloque)
-		var tile_pos = tilemap.world_to_map(personaje_pos)
-		tilemap.set_cell(tile_pos.x,tile_pos.y, 1)
-		#print(tile_pos)
+		ponerQuitarBloque(1,1,1)
+#	Quitar bloques
 	if Input.is_action_just_pressed("ui_accept") or event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-#		var mouse_pos = get_viewport().get_mouse_position()
-		var personaje_pos = Vector2(get_position().x + tamanoBloque , get_position().y)
-		var tile_pos = tilemap.world_to_map(personaje_pos)
-		tilemap.set_cell(tile_pos.x,tile_pos.y, -1)
-#		print(tile_pos)
+		ponerQuitarBloque(1,1,-1)
+		
+func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):	
+#	poner = 1 ; quitar = -1	
+#	desplazaBolqueX o Y multiplicador  para ubicar el bloque
+	var tamanoBloque 
+	if get_node("AnimatedSprite").flip_h:
+		tamanoBloque = -32
+	else:
+		tamanoBloque = 32
+		
+	var personaje_pos = Vector2(get_position().x + tamanoBloque * desplazaBloqueX, get_position().y + tamanoBloque * deplazaBloqueY)
+	var tile_pos = tilemap.world_to_map(personaje_pos)
+	tilemap.set_cell(tile_pos.x,tile_pos.y, 1)
+
+
