@@ -15,6 +15,8 @@ export var slope_slide_threshold := 50.0
 var vidas_personaje = 3
 var vida = 100
 var velocity := Vector2()
+var direction_x
+
 
 func _ready():
 
@@ -23,8 +25,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	
-	var direction_x := Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	velocity.x = direction_x * move_speed
+
 	velocity.y += gravity * delta
 	var snap_vector = Vector2(0,32) if snap else Vector2()
 	velocity = move_and_slide_with_snap(velocity,snap_vector, Vector2.UP, slope_slide_threshold)
@@ -34,13 +35,14 @@ func _physics_process(delta: float) -> void:
 
 	update_animation(velocity)
 
+
 func quitarVida():
 	var menosVida = 10
 	vida = vida - menosVida
-	print(vida)
+#	print("vida: " + str(vida))
 	if vida <= 0:
 		vidas_personaje -= 1
-		print("una vida menos")
+#		print("una vida menos")
 		get_parent().queue_free()
 
 		if vidas_personaje <= 0:
@@ -54,25 +56,42 @@ func update_animation(velocity: Vector2) -> void:
 		sprite.flip_h = velocity.x < 0
 		
 func _input(event):
-
-#	Saltar
 	if Input.is_action_just_pressed("ui_up") and snap and not Input.is_action_pressed("ui_down"):
-		velocity.y = -jump_force
-		snap = false
-#		audio_player.play()
-#	Mover izquierda derecha
+		saltar()
+#	Parar la caida
 	if is_on_floor() and (Input.is_action_just_released("move_right") or Input.is_action_just_released("move_left")):
 		velocity.y = 0
+		
 #	Poner bloques
 	if Input.is_action_just_pressed("ui_select") or event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		ponerQuitarBloque(1,1,1)
 #	Quitar bloques
 	if Input.is_action_just_pressed("ui_accept") or event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		ponerQuitarBloque(1,1,-1)
+
+#	Mover izquierda derecha
+	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
+		direction_x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		movimiento()
+#	Parar movimiento
+	if Input.is_action_pressed("ui_right") == false and Input.is_action_pressed("ui_left") == false:
+		velocity.x = 0
+	
+
+
+func movimiento():
+	velocity.x = direction_x * move_speed
+
+	
+func saltar():
+	velocity.y = -jump_force
+	snap = false
+#		audio_player.play()
 		
+
 var numBolque = 0		
 func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):	
-#	poner = 1 ; quitar = -1	
+#	poner = 1 pone bloque ; poner = -1 quita bloque
 #	desplazaBolqueX o Y multiplicador  para ubicar el bloque
 	var tamanoBloque 
 	 
@@ -88,5 +107,6 @@ func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):
 		numBolque += 1
 	elif poner == -1:
 		numBolque -= 1
-	print (numBolque)
+	print ("Nº de bloques: " + str(numBolque))
 		
+
