@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Menus/MenuPrincipal/MenuPrincipal.gd" type="Script" id=1]
 [ext_resource path="res://recursos/TileSet/tileset-escenario.tres" type="TileSet" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://Menus/MenuPrincipal/Sonidos/Sampler_Nivel_1.wav" type="AudioStream" id=6]
 [ext_resource path="res://Menus/MenuPrincipal/Imgs/play-up.png" type="Texture" id=7]
 [ext_resource path="res://Menus/MenuPrincipal/Imgs/play-down.png" type="Texture" id=8]
-[ext_resource path="res://Menus/Controles/controles.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Menus/MenuPrincipal/Imgs/option-up.png" type="Texture" id=9]
+[ext_resource path="res://Menus/MenuPrincipal/Imgs/option-down.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -52,7 +53,7 @@ texture = ExtResource( 5 )
 stream = ExtResource( 6 )
 autoplay = true
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButtonPlay" type="TextureButton" parent="."]
 material = SubResource( 3 )
 margin_left = 57.65
 margin_top = 201.2
@@ -62,5 +63,14 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 8 )
 
-[node name="controles" parent="." instance=ExtResource( 9 )]
-[connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
+[node name="TextureButtonOption" type="TextureButton" parent="."]
+material = SubResource( 3 )
+margin_left = 165.95
+margin_top = 201.2
+margin_right = 246.95
+margin_bottom = 241.2
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+[connection signal="button_down" from="TextureButtonPlay" to="." method="_on_TextureButtonPlay_button_down"]
+[connection signal="button_down" from="TextureButtonOption" to="." method="_on_TextureButtonOption_button_down"]
