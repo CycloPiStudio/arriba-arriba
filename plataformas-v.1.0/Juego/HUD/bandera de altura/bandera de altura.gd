@@ -10,7 +10,7 @@ func _process(_delta):
 	pass
 
 func ponerBandera():
-	playerPosY = get_node("/root/Level/Player").get_position().y
+	playerPosY = get_parent().get_node("Player").get_position().y
 	var alturaPlayer = get_viewport().size.y - playerPosY
 	var separacionEntreBanderas = 500
 	for i in range (1000):
@@ -21,7 +21,7 @@ func ponerBandera():
 		pass
 
 func marcarAlturaPlayer(posBandera):
-	playerPosX = get_node("/root/Level/Player").get_position().x
+	playerPosX = get_parent().get_node("Player").get_position().x
 #Posiciona la altura de la bandera
 	get_node(".").set_position(Vector2(playerPosX , posBandera))
 #Coloca los dos puntos de la linea de la bandera posicion ancho y alto
