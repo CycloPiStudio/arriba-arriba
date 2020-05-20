@@ -3,6 +3,7 @@ extends Node2D
 onready var altura = (get_viewport().size.y)
 onready var nuevaAltura
 export var velocidadSubida = 50
+var herida = 10
 
 var playerPosX
 var playerPosY
@@ -35,7 +36,7 @@ func quitarVida():
 	if playerPosY > nuevaAltura:
 #		get_node("Timer").start()	
 #		if 
-		player.quitarVida()
+		player.quitarVida(herida)
 		print ("muere" +str(nuevaAltura))
 #		print ("altura player: " + str(playerPosY))
 #		print ("altura enemigo: " + str(nuevaAltura ))
