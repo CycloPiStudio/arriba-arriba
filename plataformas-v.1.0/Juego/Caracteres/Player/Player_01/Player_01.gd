@@ -36,8 +36,8 @@ func _physics_process(delta: float) -> void:
 	update_animation(velocity)
 
 
-func quitarVida():
-	var menosVida = 10
+func quitarVida(menosVida):
+#	menosVida Cantidad de vida que se quita o se pone
 	vida = vida - menosVida
 #	print("vida: " + str(vida))
 	if vida <= 0:
