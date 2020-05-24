@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var player = get_node("/root/Level/Player")
+onready var player = get_node("/root/Level_"+str(Global.nivel)+"/Player")
 var dere = 0
 var izq = 0
 
