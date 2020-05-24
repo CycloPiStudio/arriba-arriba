@@ -3,18 +3,21 @@ extends Node2D
 onready var altura = (get_viewport().size.y)
 onready var nuevaAltura
 export var velocidadSubida = 50
-var herida = 10
 
 var playerPosX
 var playerPosY
 var player
+var h = 10
 
 func _ready():
-
+	get_node("tiempoJuego").stop()
+	get_node("tiempoJuego").start()
 	pass 
 
 
 func _process(_delta):
+#	print ("tiempo Juego: " + str(1000 - get_node("tiempoJuego") .time_left))
+#	print ( "ticks: " + str(OS.get_system_time_secs()))
 	aumentarAltura()
 	posicionEnemigo()
 	cartelAltura()
@@ -36,21 +39,22 @@ func quitarVida():
 	if playerPosY > nuevaAltura:
 #		get_node("Timer").start()	
 #		if 
-		player.quitarVida(herida)
-		print ("muere" +str(nuevaAltura))
+		player.quitarVida(h)
+		print ("muere a: " +str(nuevaAltura) + " m")
 #		print ("altura player: " + str(playerPosY))
 #		print ("altura enemigo: " + str(nuevaAltura ))
 		pass
 
 
 func aumentarAltura():
-	var tiempo = int(OS.get_ticks_msec())/velocidadSubida
-	nuevaAltura = altura - tiempo
+	var tiempo = (1000 - get_node("tiempoJuego").time_left)
+	nuevaAltura = altura - tiempo * 100
 	
 #	altura = altura - (int(OS.get_ticks_msec())/1000)
 #	print("tiempo: " + str(tiempo))
 #	print ("altura: " + str(altura))
 #	print ("nueva altura: " + str(nuevaAltura))
+#	print("posPlayerY: " + str(playerPosY))
 
 	cartelAltura()
 
