@@ -7,6 +7,7 @@ var vidas = vidasIniciales
 var nivel = 1
 var carpeta_niveles = "res://Juego/Escenarios/Niveles"
 var numero_max_niveles : int
+var touch = true
 
 func _ready():
 	numero_max_niveles = (lista_archivos_en_directorio(carpeta_niveles).size())
