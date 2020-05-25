@@ -44,6 +44,7 @@ func quitarVida(menosVida):
 		vidas_personaje -= 1
 #		print("una vida menos")
 		get_parent().queue_free()
+		Global_cambiar_nivel.goto_scene("res://Juego/Escenarios/Niveles/Nivel_" + str(Global.nivel) + "/Nivel_" +str(Global.nivel) + ".tscn")
 
 		if vidas_personaje <= 0:
 			print("se acabo la partida")
