@@ -6,7 +6,7 @@ onready var enemigo_02 = preload("res://Juego/Caracteres/Enemigos/Enemigo_02/Ene
 onready var banderaAltura = preload("res://Juego/HUD/bandera de altura/bandera de altura.tscn").instance()
 
 func _ready():
-
+	Global.nivel = 1
 	tilemap = get_node("TileMap")
 	tilemap.set_cell_size(Vector2(32,32)) 
 	for i in 200:
