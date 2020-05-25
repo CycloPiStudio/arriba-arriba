@@ -12,7 +12,7 @@ export var move_speed := 250
 export var jump_force := 500
 export var gravity := 900
 export var slope_slide_threshold := 50.0
-var vidas_personaje = 3
+var vidas_personaje = Global.vidas
 var vida = 100
 var velocity := Vector2()
 var direction_x
@@ -43,11 +43,13 @@ func quitarVida(menosVida):
 	if vida <= 0:
 		vidas_personaje -= 1
 #		print("una vida menos")
+		Global.vidas -= 1
 		get_parent().queue_free()
 		Global_cambiar_nivel.goto_scene("res://Juego/Escenarios/Niveles/Nivel_" + str(Global.nivel) + "/Nivel_" +str(Global.nivel) + ".tscn")
 
-		if vidas_personaje <= 0:
-			print("se acabo la partida")
+	if vidas_personaje < 1:
+		Global_cambiar_nivel.goto_scene("res://Menus/MenuPrincipal/MenuPrincipal.tscn")
+		print("se acabo la partida")
 	
 func update_animation(velocity: Vector2) -> void:
 #	var animation := "idle"
