@@ -2,7 +2,7 @@ extends Node2D
 
 onready var tilemap : TileMap 
 onready var personaje : KinematicBody2D = preload("res://Juego/Caracteres/Player/Player_01/Player_01.tscn").instance()
-onready var enemigo_02 = preload("res://Juego/Caracteres/Enemigos/Enemigo_02/Enemigo_02.tscn").instance()
+
 onready var banderaAltura = preload("res://Juego/HUD/bandera de altura/bandera de altura.tscn").instance()
 
 func _ready():
