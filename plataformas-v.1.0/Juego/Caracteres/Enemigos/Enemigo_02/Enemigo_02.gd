@@ -48,7 +48,7 @@ func quitarVida():
 
 func aumentarAltura():
 	var tiempo = (1000 - get_node("tiempoJuego").time_left)
-	nuevaAltura = altura - tiempo * 100
+	nuevaAltura = altura - tiempo * velocidadSubida
 	
 #	altura = altura - (int(OS.get_ticks_msec())/1000)
 #	print("tiempo: " + str(tiempo))
