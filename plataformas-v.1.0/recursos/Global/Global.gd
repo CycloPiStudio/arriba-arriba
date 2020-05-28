@@ -10,8 +10,15 @@ var numero_max_niveles : int
 var touch = true
 
 func _ready():
+	print("puntuacion: " + str(puntuacion))
+	print("monedas: " + str(monedas))
+	print("vidas: " + str(vidas))
+	print("nivel: " + str(nivel))
+	print("touch: " + str(touch))
 	numero_max_niveles = (lista_archivos_en_directorio(carpeta_niveles).size())
 
+#func _process(delta):
+#	print(vidas)
 
 func lista_archivos_en_directorio(path):
     var files = []
