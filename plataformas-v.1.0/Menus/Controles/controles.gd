@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	print(Global.touch)
+#	print(Global.touch)
 #	print(ProjectSettings.get_setting("application/config/name"))
 #	print(ProjectSettings.get_setting("input/ui_up"))
 #	print(ProjectSettings.get_setting("input/ui_up"))
