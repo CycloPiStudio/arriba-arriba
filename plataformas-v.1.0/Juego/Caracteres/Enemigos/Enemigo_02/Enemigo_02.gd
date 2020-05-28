@@ -49,7 +49,10 @@ func quitarVida():
 func aumentarAltura():
 	var tiempo = (1000 - get_node("tiempoJuego").time_left)
 	nuevaAltura = altura - tiempo * velocidadSubida
-	
+	if int(nuevaAltura) % 100 == 0:
+		print("dividible entre 100")
+		velocidadSubida += 10
+		print ("velocidadSubida " + str(velocidadSubida))
 #	altura = altura - (int(OS.get_ticks_msec())/1000)
 #	print("tiempo: " + str(tiempo))
 #	print ("altura: " + str(altura))
@@ -65,5 +68,8 @@ func cartelAltura():
 	get_node("Line2D").set_point_position(0, Vector2(-get_viewport().size.x, 0))
 	get_node("Line2D").set_point_position(1, Vector2(get_viewport().size.x, 0))
 	get_node("Line2D/Label").set_text(str(get_viewport().size.y - nuevaAltura))
+
+
+
 
 
