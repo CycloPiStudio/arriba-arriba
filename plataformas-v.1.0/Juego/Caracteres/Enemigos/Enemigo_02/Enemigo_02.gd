@@ -40,8 +40,7 @@ func quitarVida():
 #		get_node("Timer").start()	
 #		if 
 		player.quitarVida(h)
-		print ("muere a: " +str(nuevaAltura) + " m")
-#		print ("altura player: " + str(playerPosY))
+#		print ("muere a: " +str(playerPosY) + " m")
 #		print ("altura enemigo: " + str(nuevaAltura ))
 		pass
 
@@ -68,6 +67,7 @@ func cartelAltura():
 	get_node("Line2D").set_point_position(0, Vector2(-get_viewport().size.x, 0))
 	get_node("Line2D").set_point_position(1, Vector2(get_viewport().size.x, 0))
 	get_node("Line2D/Label").set_text(str(get_viewport().size.y - nuevaAltura))
+
 
 
 
