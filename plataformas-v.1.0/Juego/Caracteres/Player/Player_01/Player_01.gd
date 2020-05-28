@@ -49,6 +49,7 @@ func quitarVida(menosVida):
 
 	if vidas_personaje < 1:
 		Global_cambiar_nivel.goto_scene("res://Menus/MenuPrincipal/MenuPrincipal.tscn")
+		get_node("/root/Global_cambiar_nivel/Carga").queue_free()
 		print("se acabo la partida")
 	
 func update_animation(velocity: Vector2) -> void:
