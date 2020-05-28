@@ -3,5 +3,6 @@
 [ext_resource path="res://Juego/Caracteres/Enemigos/Enemigo_02/Timer/Timer.gd" type="Script" id=1]
 
 [node name="Timer" type="Timer"]
+wait_time = 0.52
 script = ExtResource( 1 )
 [connection signal="timeout" from="." to="." method="_on_Timer_timeout"]
