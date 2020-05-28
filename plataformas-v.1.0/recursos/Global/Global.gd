@@ -6,7 +6,7 @@ var monedas = 0
 var vidas = vidasIniciales
 var nivel = 1
 #var carpeta_niveles = "res://Juego/Escenarios/Niveles"
-var numero_max_niveles : int
+#var numero_max_niveles : int
 var touch = true
 
 func _ready():
