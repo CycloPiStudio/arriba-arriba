@@ -17,4 +17,4 @@ func _process(_delta):
 	look_at(Salida.position + Vector2(PI/2,0))
 #	print(get_node(".").name)
 #	print(Player.position)
-	print(Player.name)
+#	print(Player.name)
