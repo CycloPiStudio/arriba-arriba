@@ -17,7 +17,7 @@ func _ready():
 	bar_vida.set_position(Vector2(-30,-50))#Player.global_position.x-50 , Player.global_position.y-100))
 	
 	set_bar_vida()
-	print (Player.vida)
+#	print (Player.vida)
 
 	pass
 
