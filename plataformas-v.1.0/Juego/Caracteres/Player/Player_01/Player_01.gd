@@ -48,7 +48,7 @@ func quitarVida(menosVida):
 		Global_cambiar_nivel.goto_scene("res://Juego/Escenarios/Niveles/Nivel_" + str(Global.nivel) + "/Nivel_" +str(Global.nivel) + ".tscn")
 
 	if vidas_personaje < 1:
-		Global_cambiar_nivel.goto_scene("res://Menus/MenuPrincipal/MenuPrincipal.tscn")
+		Global_cambiar_nivel.goto_scene("res://Menus/GameOver/GameOver.tscn")
 		get_node("/root/Global_cambiar_nivel/Carga").queue_free()
 		print("se acabo la partida")
 	
