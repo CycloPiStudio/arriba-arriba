@@ -1,20 +1,21 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Player_01.gd" type="Script" id=1]
-[ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-jump-2.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-jump-1.png" type="Texture" id=2]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-walk-1.png" type="Texture" id=3]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-walk-2.png" type="Texture" id=4]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-walk-3.png" type="Texture" id=5]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-walk-4.png" type="Texture" id=6]
-[ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-jump-1.png" type="Texture" id=7]
+[ext_resource path="res://Juego/Caracteres/Player/Player_01/Imgs/player-jump-2.png" type="Texture" id=7]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Sonidos/paso.wav" type="AudioStream" id=8]
 [ext_resource path="res://Juego/Caracteres/Player/Player_01/Sonidos/salto.wav" type="AudioStream" id=9]
+[ext_resource path="res://Juego/HUD/Vida player/VidaPlayer.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "caer",
+"name": "saltar",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -24,7 +25,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "saltar",
+"name": "caer",
 "speed": 5.0
 } ]
 
@@ -54,4 +55,6 @@ pitch_scale = 0.5
 
 [node name="AudioSalto" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+
+[node name="HUD1vidaNodo" parent="." instance=ExtResource( 10 )]
 [connection signal="finished" from="AudioPasos" to="." method="_on_AudioPasos_finished"]
