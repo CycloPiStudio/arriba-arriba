@@ -111,6 +111,6 @@ func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):
 		numBolque += 1
 	elif poner == -1:
 		numBolque -= 1
-	print ("Nº de bloques: " + str(numBolque))
+#	print ("Nº de bloques: " + str(numBolque))
 		
 
