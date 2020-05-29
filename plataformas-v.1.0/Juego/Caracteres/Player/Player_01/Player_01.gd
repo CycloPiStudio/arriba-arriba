@@ -97,14 +97,18 @@ var numBolque = 0
 func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):	
 #	poner = 1 pone bloque ; poner = -1 quita bloque
 #	desplazaBolqueX o Y multiplicador  para ubicar el bloque
-	var tamanoBloque 
+	var tamanoBloque = 32
+	var tamanoBloqueX 
+	var tamanoBloqueY
+	
 	 
 	if get_node("AnimatedSprite").flip_h:
-		tamanoBloque = -32
+		tamanoBloqueX = tamanoBloque * (-1)
+		tamanoBloqueY = tamanoBloque
 	else:
-		tamanoBloque = 32
-		
-	var personaje_pos = Vector2(get_position().x + tamanoBloque * desplazaBloqueX, get_position().y + tamanoBloque * deplazaBloqueY)
+		tamanoBloqueX = tamanoBloque
+		tamanoBloqueY = tamanoBloque
+	var personaje_pos = Vector2(get_position().x + tamanoBloqueX + desplazaBloqueX, get_position().y + tamanoBloqueY + deplazaBloqueY)
 	var tile_pos = tilemap.world_to_map(personaje_pos)
 	tilemap.set_cell(tile_pos.x,tile_pos.y, poner)
 	if poner == 1:
@@ -113,4 +117,5 @@ func ponerQuitarBloque(desplazaBloqueX, deplazaBloqueY, poner):
 		numBolque -= 1
 #	print ("Nº de bloques: " + str(numBolque))
 		
+
 
